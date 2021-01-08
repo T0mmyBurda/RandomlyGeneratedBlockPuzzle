@@ -54,48 +54,52 @@ def nextDir(x , y , sym):
         print("up , " + mat[y - 1][x])
         if(y == 0):
             print("edge")
-            nextDir(x , y , sym)
+            return nextDir(x , y , sym)
         elif(mat[y - 1][x] != ""):
             print("blocked")
-            nextDir(x , y , sym)
+            return nextDir(x , y , sym)
         else:
             mat[y - 1][x] = sym
+            print("cords = " + str(x) + " , " + str((y - 1)))
             return [x , y - 1]
         
     if(direction == 1): #left
         print("left , " + mat[y][x + 1])
         if(x == 3):
             print("edge")
-            nextDir(x , y , sym)
+            return nextDir(x , y , sym)
         elif(mat[y][x + 1] != ""):
             print("blocked")
-            nextDir(x , y , sym)
+            return nextDir(x , y , sym)
         else:
             mat[y][x + 1] = sym
+            print("cords = " + str((x + 1)) + " , " + str(y))
             return [x + 1 , y]
 
     if(direction == 2): #down
         print("down , " + mat[y - 1][x])
         if(y == 3):
             print("edge")
-            nextDir(x , y , sym)
+            return nextDir(x , y , sym)
         elif(mat[y - 1][x] != ""):
             print("blocked")
-            nextDir(x , y , sym)
+            return nextDir(x , y , sym)
         else:
             mat[y - 1][x] = sym
+            print("cords = " + str(x) + " , " + str((y - 1)))
             return [x , y - 1]
 
     if(direction == 3): #right
         print("right , " + mat[y][x - 1])
         if(x == 0):
             print("edge")
-            nextDir(x , y , sym)
+            return nextDir(x , y , sym)
         elif(mat[y][x - 1] != ""):
             print("blocked")
-            nextDir(x , y , sym)
+            return nextDir(x , y , sym)
         else:
             mat[y][x - 1] = sym
+            print("cords = " + str((x - 1)) + " , " + str(y))
             return [x - 1 , y]
 
     
