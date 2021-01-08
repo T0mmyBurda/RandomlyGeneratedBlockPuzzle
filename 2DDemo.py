@@ -43,6 +43,8 @@ def makePiece(sym):
     for i in range (3):
         cords = nextDir(curX , curY , sym)
         printMat()
+        curX = cords[0]
+        curY = cords[1]
 
 def nextDir(x , y , sym):
     #nextDir = random.randint(0, 3)
@@ -95,7 +97,20 @@ def nextDir(x , y , sym):
         else:
             mat[y][x - 1] = sym
             return [x - 1 , y]
-        
+
+    
+
+def locked (x , y):
+    if((y == 0) or (mat[y - 1][x] != "")): #checks if up is blocked
+        print("up locked")
+        if((x == 3) or (mat[y][x + 1] != "")): #checks if left is blocked
+            print("left locked")
+            if((y == 3) or (mat[y][x - 1] != "")): #checks right up is blocked
+                print("down locked")
+                if((x == 0) or (mat[y][x - 1] != "")): #checks down up is blocked
+                    print("right locked")
+                    return True
+    return False
 
     
 main()
