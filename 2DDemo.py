@@ -77,17 +77,17 @@ def nextDir(x , y , sym):
             return [x + 1 , y]
 
     if(direction == 2): #down
-        print("down , " + mat[y - 1][x])
+        print("down , " + mat[y + 1][x])
         if(y == 3):
             print("edge")
             return nextDir(x , y , sym)
-        elif(mat[y - 1][x] != ""):
+        elif(mat[y + 1][x] != ""):
             print("blocked")
             return nextDir(x , y , sym)
         else:
-            mat[y - 1][x] = sym
-            print("cords = " + str(x) + " , " + str((y - 1)))
-            return [x , y - 1]
+            mat[y + 1][x] = sym
+            print("cords = " + str(x) + " , " + str((y + 1)))
+            return [x , y + 1]
 
     if(direction == 3): #right
         print("right , " + mat[y][x - 1])
