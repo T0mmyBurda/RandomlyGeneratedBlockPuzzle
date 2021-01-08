@@ -39,15 +39,28 @@ def makePiece(sym):
 
     mat[curY][curX] = sym
     printMat()
+
+    pieceCords = [] #holds a record of all the cords of the piece so that when there is a locked cord a new one can continue the peice
+    lockedCords = [] # array of indexes of locked cords so they are not reused
     
     for i in range (3):
+        pieceCords.append([curX , curY]) #stores cords in pieceCords
         cords = nextDir(curX , curY , sym)
         printMat()
         curX = cords[0]
         curY = cords[1]
 
+        if (locked(curX , curY)):
+            print("CORDS " + str(curX) + " , " + str(curY) + " LOCKED")
+            lockedCords.append([curX , curY]) #adds current cord to list of locked cords
+            cord = random.choice(pieceCords) #chooses new cord
+            while(cord not in lockedCords): #makes sure new cords are not in locked list
+                cord = random.choice(pieceCords)
+            curX = cords[0]#sets new cords
+            curY = cords[1]
+            
+
 def nextDir(x , y , sym):
-    #nextDir = random.randint(0, 3)
     direction = random.randint(0, 3)
 
     if(direction == 0): #up
@@ -109,10 +122,10 @@ def locked (x , y):
         print("up locked")
         if((x == 3) or (mat[y][x + 1] != "")): #checks if left is blocked
             print("left locked")
-            if((y == 3) or (mat[y][x - 1] != "")): #checks right up is blocked
-                print("down locked")
-                if((x == 0) or (mat[y][x - 1] != "")): #checks down up is blocked
-                    print("right locked")
+            if((y == 3) or (mat[y][x - 1] != "")): #checks right is blocked
+                print("right locked")
+                if((x == 0) or (mat[y + 1][x] != "")): #checks down up is blocked
+                    print("down locked")
                     return True
     return False
 
