@@ -1,14 +1,15 @@
 import random
 
 #matrix that will repesent a 2d puzzle
-mat = [ [ "1" , "" , "" , "" ] ,
-        [ "" , "1" , "" , "" ] ,
-        [ "" , "" , "1" , "" ] ,
-        [ "" , "" , "" , "1" ] ]
+mat = [ [ "x" , "" , "" , "" ] ,
+        [ "" , "x" , "" , "" ] ,
+        [ "" , "" , "x" , "" ] ,
+        [ "" , "" , "" , "x" ] ]
 
 def main():
 
-    makePiece("y")
+    makePiece("1")
+    makePiece("2")
 
 def printMat():
     line = ""
@@ -127,9 +128,9 @@ def locked (x , y):
         print("up locked")
         if((x == 3) or (mat[y][x + 1] != "")): #checks if left is blocked
             print("left locked")
-            if((y == 3) or (mat[y][x - 1] != "")): #checks right is blocked
+            if((x == 0) or (mat[y][x - 1] != "")): #checks right is blocked
                 print("right locked")
-                if((x == 0) or (mat[y + 1][x] != "")): #checks down up is blocked
+                if((y == 3) or (mat[y + 1][x] != "")): #checks down is blocked
                     print("down locked")
                     return True
     return False
