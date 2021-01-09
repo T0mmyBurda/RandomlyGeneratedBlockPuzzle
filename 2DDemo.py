@@ -58,13 +58,15 @@ def makePiece(sym):
                 cord = random.choice(pieceCords)
             curX = cords[0]#sets new cords
             curY = cords[1]
+            print("NEW CORDS: " + str(curX) + " , " + str(curY))
             
 
 def nextDir(x , y , sym):
     direction = random.randint(0, 3)
 
     if(direction == 0): #up
-        print("up , " + mat[y - 1][x])
+        if(y > 0):
+            print("up , " + mat[y - 1][x])
         if(y == 0):
             print("edge")
             return nextDir(x , y , sym)
@@ -77,7 +79,8 @@ def nextDir(x , y , sym):
             return [x , y - 1]
         
     if(direction == 1): #left
-        print("left , " + mat[y][x + 1])
+        if(x < 3):
+            print("left , " + mat[y][x + 1])
         if(x == 3):
             print("edge")
             return nextDir(x , y , sym)
@@ -90,7 +93,8 @@ def nextDir(x , y , sym):
             return [x + 1 , y]
 
     if(direction == 2): #down
-        print("down , " + mat[y + 1][x])
+        if(y < 3):
+            print("down , " + mat[y + 1][x])
         if(y == 3):
             print("edge")
             return nextDir(x , y , sym)
@@ -103,7 +107,8 @@ def nextDir(x , y , sym):
             return [x , y + 1]
 
     if(direction == 3): #right
-        print("right , " + mat[y][x - 1])
+        if(x > 0):
+            print("right , " + mat[y][x - 1])
         if(x == 0):
             print("edge")
             return nextDir(x , y , sym)
