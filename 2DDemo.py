@@ -60,6 +60,14 @@ def makePiece(sym):
             curX = cords[0]#sets new cords
             curY = cords[1]
             print("NEW CORDS: " + str(curX) + " , " + str(curY))
+
+def makePuzzle():
+    cords1 = []
+    cords2 = []
+    cords3 = []
+    cords4 = []
+
+    
             
 
 def nextDir(x , y , sym):
