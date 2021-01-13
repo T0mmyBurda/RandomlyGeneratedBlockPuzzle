@@ -11,12 +11,12 @@ def main():
     makePiece("1")
     makePiece("2")
 
-def printMat():
+def printMat(): #prints out the matrix to the console ("-" is an empty space)
     line = ""
     
-    for i in range(len(mat)):
+    for i in range(len(mat)): #for each row of the matrix
         line = ""
-        for j in range (len(mat[0])):
+        for j in range (len(mat[0])): #for each item on the row
             if(mat[i][j] == ""):
                 line += "-" # "-" is equal to an empty space
             else:
@@ -62,10 +62,14 @@ def makePiece(sym):
             print("NEW CORDS: " + str(curX) + " , " + str(curY))
 
 def makePuzzle():
-    cords1 = []
-    cords2 = []
-    cords3 = []
-    cords4 = []
+    #array of arrays that stores all the peices cordinates
+    cords = [ [] ,   #for piece 1
+              [] ,   #for piece 2
+              [] ,   #for piece 3
+              []   ]
+
+    while(!puzzleFull):
+        
 
     
             
@@ -75,14 +79,14 @@ def nextDir(x , y , sym):
 
     if(direction == 0): #up
         if(y > 0):
-            print("up , " + mat[y - 1][x])
-        if(y == 0):
+            print("up , " + mat[y - 1][x]) #prints out the next direction and sybol of that spot
+        if(y == 0): #checks if the direction will go past an edge
             print("edge")
             return nextDir(x , y , sym)
-        elif(mat[y - 1][x] != ""):
+        elif(mat[y - 1][x] != ""): #checks if the piece is blocked by another
             print("blocked")
             return nextDir(x , y , sym)
-        else:
+        else: #if the space is avalible it is claimed
             mat[y - 1][x] = sym
             print("cords = " + str(x) + " , " + str((y - 1)))
             return [x , y - 1]
@@ -129,9 +133,17 @@ def nextDir(x , y , sym):
             print("cords = " + str((x - 1)) + " , " + str(y))
             return [x - 1 , y]
 
-    
 
-def locked (x , y):
+def puzzleFull(): #checks if the puzzle is full
+    
+    for i in range(len(mat)): #for each row of the matrix
+        for j in range (len(mat[0])): #for each item on the row
+            if(mat[i][j] == ""): #if there is an empty space the puzzle is not full
+                return False
+    print("PUZZLE FULL!")
+    return True
+
+def locked (x , y): #checks if a spot has reached a dead end
     if((y == 0) or (mat[y - 1][x] != "")): #checks if up is blocked
         print("up locked")
         if((x == 3) or (mat[y][x + 1] != "")): #checks if left is blocked
