@@ -63,16 +63,26 @@ def makePiece(sym):
 
 def makePuzzle():
     #array of arrays that stores all the peices cordinates
+    #cords will be pushed to array as another array [x , y]
     cords = [ [] ,   #for piece 1
               [] ,   #for piece 2
               [] ,   #for piece 3
               []   ]
 
-    while(!puzzleFull):
-        
+    for t in cords: #get intial cordinates for each piece
+        #gets cordinates to start piece
+        newCords = (random.randint(0, 3) , random.randint(0, 3))
 
-    
-            
+        #gets new cordinates if the spot is taken already
+        while(mat[newCords[0]][newCords[1]] != ""):
+            newCords = (random.randint(0, 3) , random.randint(0, 3))
+        cords[t].append(newCords)
+
+    while(puzzleFull == False): #loops adding to each piece until board is full
+        for i in cords:
+            lastCords = cords[i][-1] #gets last cords for the selected piece
+            NextDir(lastCords[0] , lastCords[1] , str(i)) #calls next direction with thoes cords and 
+
 
 def nextDir(x , y , sym):
     direction = random.randint(0, 3)
