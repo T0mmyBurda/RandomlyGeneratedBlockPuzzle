@@ -7,9 +7,9 @@ mat = [ [ "x" , "" , "" , "" ] ,
         [ "" , "" , "" , "x" ] ]
 
 def main():
-
-    makePiece("1")
-    makePiece("2")
+    makePuzzle()
+    #makePiece("1")
+    #makePiece("2")
 
 def printMat(): #prints out the matrix to the console ("-" is an empty space)
     line = ""
@@ -69,17 +69,18 @@ def makePuzzle():
               [] ,   #for piece 3
               []   ]
 
-    for t in cords: #get intial cordinates for each piece
+    for t in range (len(cords)): #get intial cordinates for each piece
         #gets cordinates to start piece
         newCords = (random.randint(0, 3) , random.randint(0, 3))
 
         #gets new cordinates if the spot is taken already
         while(mat[newCords[0]][newCords[1]] != ""):
             newCords = (random.randint(0, 3) , random.randint(0, 3))
+        print(t)
         cords[t].append(newCords)
 
     while(puzzleFull == False): #loops adding to each piece until board is full
-        for i in cords:
+        for i in range len(cords):
             lastCords = cords[i][-1] #gets last cords for the selected piece
             NextDir(lastCords[0] , lastCords[1] , str(i)) #calls next direction with thoes cords and 
 
