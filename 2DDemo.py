@@ -76,11 +76,10 @@ def makePuzzle():
         #gets new cordinates if the spot is taken already
         while(mat[newCords[0]][newCords[1]] != ""):
             newCords = (random.randint(0, 3) , random.randint(0, 3))
-        print(t)
         cords[t].append(newCords)
 
     while(puzzleFull == False): #loops adding to each piece until board is full
-        for i in range len(cords):
+        for i in range (len(cords)):
             lastCords = cords[i][-1] #gets last cords for the selected piece
             NextDir(lastCords[0] , lastCords[1] , str(i)) #calls next direction with thoes cords and 
 
